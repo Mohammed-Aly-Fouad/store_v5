@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/main.js" defer></script>
+    <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <title>مكتب نور - الماركات</title>
+</head>
+
+<body class="page-layout">
+    <!--############ Flash Messages ############## -->
+    <div class="page-layout__flash-messages">
+        {% if let Some(msg) = success_message %}
+        <div role="status" class="flash flash--success show">
+            <p class="flash-messages__text">{{ msg }}</p>
+        </div>
+        {% endif %}
+
+        {% if let Some(msg) = error_message %}
+        <div role="alert" class="flash flash--error show">
+            <p class="flash-messages__text">{{ msg }}</p>
+        </div>
+        {% endif %}
+    </div>
+    <!--############ Header ############## -->
+    <header class="page-layout__header">
+        <div class="header__title">
+            <h1>إدارة الماركات</h1>
+        </div>
+        <div class=" search-container header__search">
+            <input type="search" name="q" class="header__search-input" placeholder="بحث عن ماركة ..." autocomplete="off"
+                hx-get="/web/brands/search" hx-trigger="keyup changed delay:300ms, search"
+                hx-target="#search-results-dropdown">
+            <div id="search-results-dropdown" class="search-dropdown"></div>
+        </div>
+        <div class="header__action">
+            <a href="/web/brands/new" class="header__btn btn btn--primary">إضافة ماركة</a>
+        </div>
+    </header>
+    <!--############ Header ############## -->
+    <aside class="page-layout__sidebar">
+        <h2 class="sidebar__title">لوحة التحكم</h2>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+
+                    <a href="/web" class="nav__link 
+                     {% if current_page == " home" %} nav__link--active {% endif %}"> الصفحة الرئيسية</a>
+
+                </li>
+                <li class="nav__item">
+
+                    <a href="/web/categories" class="nav__link 
+                     {% if current_page == " categories" %} nav__link--active {% endif %}">إدارة الفئات</a>
+
+                </li>
+                <li class="nav__item">
+
+                    <a href="/web/products" class="nav__link 
+                     {% if current_page == " products" %} nav__link--active {% endif %}">إدارة الأصناف</a>
+
+                </li>
+                <li class="nav__item">
+
+                    <a href="/web/brands" class="nav__link 
+                     {% if current_page == " brands" %} nav__link--active {% endif %}">إدارة الماركات</a>
+
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <!--############ main Form ############## -->
+    <main class="page-layout__main">
+        <form method="post" action="/web/brands/{{id}}/edit">
+            <div class="field">
+                <label for="name_en">الاسم بالإنجليزية</label>
+                <input type="text" id="name_en" name="name_en" placeholder="e.g. ROTRING" value="{{ form.name_en }}">
+                {% if let Some(errs) = errors %}
+                {% if let Some(err) = errs.name_en %}
+                <span class="error-message"
+                    style="color: #dc2626; font-size: 0.85rem; margin-top: 4px; display: block;">
+                    {{ err }}
+                </span>
+                {% endif %}
+                {% endif %}
+            </div>
+            <div class="field">
+                <label for="name_ar">الاسم بالعربية</label>
+                <input type="text" id="name_ar" name="name_ar" placeholder="e.g.  روترنج" value="{{ form.name_ar }}">
+                {% if let Some(errs) = errors %}
+                {% if let Some(err) = errs.name_ar %}
+                <span class="error-message"
+                    style="color: #dc2626; font-size: 0.85rem; margin-top: 4px; display: block;">
+                    {{ err }}
+                </span>
+                {% endif %}
+                {% endif %}
+            </div>
+           
+
+            <div class="form-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                <button type="submit" class="btn btn-primary">تعديل الماركة</button>
+                <a href="/web/brands" class="btn btn-ghost">إلغاء</a>
+            </div>
+
+        </form>
+    </main>
+
+    <footer class="page-layout__footer">
+        <p>جميع الحقوق محفوظة™️ لمكتب نور</p>
+    </footer>
+</body>
+
+
+</html>

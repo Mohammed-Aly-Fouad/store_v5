@@ -1,0 +1,12 @@
+{% if categories.is_empty() %}
+    <div class="search-dropdown-item no-results">
+        <span>لا توجد نتائج تطابق "{{ query }}"</span>
+    </div>
+{% else %}
+   {% for category in categories %}
+    <a href="/web/categories/{{ category.id }}/edit" class="search-dropdown-item">
+        <span class="item-name-ar">{{ category.name_ar }}</span>
+        {# <span class="item-name-en">{{ brand.name_en }}</span> #}
+    </a>
+{% endfor %}
+{% endif %}

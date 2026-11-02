@@ -1,0 +1,45 @@
+[package]
+name = "store_v5"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Async Runtime
+tokio = { version = "1.38", features = ["full"] }
+
+# Web Framework & HTTP
+axum = { version = "0.8", features = ["macros"] }
+tower-http = { version = "0.6", features = ["cors", "trace", "fs"] }
+
+# Database & Migration
+sqlx = { version = "0.8", features = [
+    "runtime-tokio-rustls",
+    "postgres",
+    "chrono",
+    "json",
+    "uuid"
+] }
+
+# Data Serialization & DTO Validation
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+validator = { version = "0.18", features = ["derive"] }
+
+# Date & Time Handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Web Templates (Askama for src/web/)
+askama = "0.16"
+askama_web = { version = "0.16", features = ["axum-0.8"] }
+
+# Environment & Logging
+dotenvy = "0.15"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Utilities
+uuid = { version = "1.10", features = ["v4", "serde"] }
+regex = "1.13.1"
+
+urlencoding = "2.1"
+thiserror = "2.0.21"

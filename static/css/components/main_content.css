@@ -1,0 +1,10 @@
+ .notfound {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center;     /* Vertically center */
+    height: 150px;           /* Requires a defined height */
+    border: 5px solid #ccc;
+    background-color: aliceblue;
+    color: red;
+    font-size: large;
+  }

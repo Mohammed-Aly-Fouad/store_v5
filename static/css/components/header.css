@@ -1,0 +1,137 @@
+.page-layout__header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.page-layout__header__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+
+.header__search {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  justify-self: center;
+}
+
+
+
+
+.header__action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+
+
+/* Base Button Structure */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Primary Button Modifier */
+.btn--primary {
+  background-color: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25);
+}
+
+.btn--primary:hover {
+  background-color: #15803d;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+}
+
+/* Icon Animation */
+.btn svg {
+  transition: transform 0.25s ease;
+}
+
+.btn:hover svg {
+  transform: rotate(90deg);
+}
+
+/* Small Button Size Modifier */
+.btn--sm {
+  padding: 0.25rem 0.625rem;
+  font-size: 0.8125rem;
+}
+
+/* Text-Only Variant (Card Edit Button) */
+.btn--text {
+  background-color: transparent;
+  color: #2563eb;
+}
+
+.btn--text:hover {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+/* Danger Text-Only Variant (Card Delete Button) */
+.btn--danger-text {
+  background-color: transparent;
+  color: #dc2626;
+}
+
+.btn--danger-text:hover {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+
+
+
+/* التجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .main-header {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "title action"
+      "search search";
+    gap: 1rem;
+  }
+
+  .header__title {
+    grid-area: title;
+  }
+
+  .header__action {
+    grid-area: action;
+  }
+
+  .header__search-input {
+    grid-area: search;
+    max-width: 100%;
+  }
+} 

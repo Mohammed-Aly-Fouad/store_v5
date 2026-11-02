@@ -1,0 +1,47 @@
+.page-layout {
+    display: grid;
+    min-height: 100vh;
+    direction: rtl;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 260px 1fr;
+    grid-template-areas: 
+    "header header"
+    "aside main"
+    "footer footer";
+}
+
+
+/* Using HTML semantic tags */
+.page-layout > header {
+  grid-area: header;
+}
+
+.page-layout > aside {
+   grid-area: aside;
+  position: sticky;
+  top: 0; /* Distance from top of viewport */
+  align-self: start; /* Prevent grid item stretching, required for sticky */
+  max-height: 100vh; /* Keeps sidebar height constrained to screen */
+  overflow-y: auto; /* Enables scrolling inside aside if content is long */
+}
+
+.page-layout > main {
+  grid-area: main;
+  padding: 1.5rem;
+}
+
+.page-layout > footer {
+  grid-area: footer;
+}
+
+
+@media (max-width: 768px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "aside"
+      "footer";
+  }
+}

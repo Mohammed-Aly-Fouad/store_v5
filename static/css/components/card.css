@@ -1,0 +1,151 @@
+/* الشبكة التكيفية للبطاقات */
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* التنسيق الأساسي للبطاقة */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* هيدر البطاقة */
+.card__header {
+    background-color: #ffffff; /* keep your existing background */
+    font-weight: 600;
+    color: rgb(17, 24, 39);
+    display: flex;
+    flex-direction: column; /* Stack items vertically into rows */
+    gap: 0.35rem;            /* Space between the Arabic and English lines */
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* First line: Arabic name (Right-to-Left alignment) */
+.card__header .brand-name-ar {
+    direction: rtl;
+    text-align: right;
+    width: 100%;
+    font-size: 1.05rem;
+}
+
+/* Second line: English name (Left-to-Right alignment) */
+.card__header .brand-name-en {
+    direction: ltr;
+    text-align: left;
+    width: 100%;
+    font-size: 0.95rem;
+    color: #4b5563; /* Optional: slightly softer color for English */
+}
+
+/* جسم البطاقة (يتمدد لملء الفراغ) */
+.card__body {
+  padding: 1.25rem;
+  flex: 1;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* فوتر البطاقة */
+.card__footer {
+  padding: 0.85rem 1.25rem;
+  border-top: 1px solid #f3f4f6;
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flash-messages {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  min-height: 3rem; /* Preserves vertical layout space */
+}
+
+/* Base flash alert style */
+.flash {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  /* Layout reservation & visibility handling */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* Modifier when a message is active/visible */
+.flash.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Success state */
+.flash-success {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+/* Error state */
+.flash-error {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+/* attr in product_variants */
+/* تنسيق جدول الخصائص المصغر داخل الكارت الحالي */
+.attributes-sheet-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85em;
+    background-color: #fafafa;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.attributes-sheet-table tr:not(:last-child) {
+    border-bottom: 1px solid #edf2f7;
+}
+
+.attr-key-cell {
+    color: #4a5568;
+    font-weight: 600;
+    padding: 4px 6px;
+    width: 45%;
+    background-color: #f1f5f9;
+}
+
+.attr-val-cell {
+    color: #1a202c;
+    font-weight: 500;
+    padding: 4px 6px;
+    text-align: left;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/main.js" defer></script>
+    <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <title>مكتب نور - الماركات</title>
+</head>
+
+<body class="page-layout">
+    <!--############ Flash Messages ############## -->
+    <div class="page-layout__flash-messages">
+        {% if let Some(msg) = success_message %}
+        <div role="status" class="flash flash--success show">
+            <p class="flash-messages__text">{{ msg }}</p>
+        </div>
+        {% endif %}
+
+        {% if let Some(msg) = error_message %}
+        <div role="alert" class="flash flash--error show">
+            <p class="flash-messages__text">{{ msg }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!--############ Header ############## -->
+    <header class="page-layout__header">
+        <div class="header__title">
+            <h1>إدارة الماركات</h1>
+        </div>
+        <div class=" search-container header__search">
+            <input type="search" name="q" class="header__search-input" placeholder="بحث عن ماركة ..." autocomplete="off"
+                hx-get="/web/brands/search" hx-trigger="keyup changed delay:300ms, search"
+                hx-target="#search-results-dropdown">
+            <div id="search-results-dropdown" class="search-dropdown"></div>
+        </div>
+        <div class="header__action">
+            <a href="/web/brands/new" class="header__btn btn btn--primary">إضافة ماركة</a>
+        </div>
+    </header>
+    <!--############ sidebar ############## -->
+    <aside class="page-layout__sidebar">
+        <h2 class="sidebar__title">لوحة التحكم</h2>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+    
+                    <a href="/web" class="nav__link 
+                         {% if current_page == " home" %} nav__link--active {% endif %}"> الصفحة الرئيسية</a>
+    
+                </li>
+                <li class="nav__item">
+    
+                    <a href="/web/categories" class="nav__link 
+                         {% if current_page == " categories" %} nav__link--active {% endif %}">إدارة الفئات</a>
+    
+                </li>
+                <li class="nav__item">
+    
+                    <a href="/web/products" class="nav__link 
+                         {% if current_page == " products" %} nav__link--active {% endif %}">إدارة الأصناف</a>
+    
+                </li>
+                <li class="nav__item">
+    
+                    <a href="/web/brands" class="nav__link 
+                         {% if current_page == "brands" %} nav__link--active {% endif %}">إدارة الماركات</a>
+    
+                </li>
+                <li class="nav__item">
+                
+                    <a href="/web/product_variants" class="nav__link 
+                                                         {% if current_page == "product_variants" %} nav__link--active {% endif
+                        %}">إدارة متغيرات الأصناف</a>
+                
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <!--############ main ############## -->
+    
+    <main class="page-layout__main">
+        <section class="collection">
+            <div class="collection__info">
+                <h2 class="collection__title">الماركات</h2>
+                <span class="collection__counter">({{ brands.len() }})</span>
+            </div>
+
+                <!--###### collection grid (cards grid )  ####### -->
+                <div class="collection-grid">
+                    {% for brand in brands %}
+                    <article class="card">
+                    <div class="card__header">
+                        <!-- السطر الأول: الاسم بالعربي (يمين) -->
+                        <div class="brand-name-ar">{{ brand.name_ar }}</div>
+                    
+                        <!-- السطر الثاني: الاسم بالإنجليزي (يسار) -->
+                        <div class="brand-name-en">{{ brand.name_en }}</div>
+                    </div>
+                       
+                        <footer class="card__footer">
+                            <time datetime="{{ brand.created_at.format(" %Y-%m-%d") }}" class="card__date">
+                                {{ brand.created_at.format("%Y-%m-%d") }}
+                            </time>
+                            <div class="card__actions">
+                                <a href="/web/brands/{{ brand.id }}/edit" class="btn btn--sm btn--text">تعديل</a>
+                
+                
+                
+                
+                
+                
+                                <form action="/web/brands/{{ brand.id }}/delete" method="POST" class="inline-form delete-form">
+                                    <button type="submit" class="btn btn--sm btn--danger-text">حذف</button>
+                                </form>
+                
+                
+                            </div>
+                        </footer>
+                    </article>
+                    {% endfor %}
+                </div>
+                </div>
+                <!--#########  end of collection grid ########### -->
+                
+                </section>
+                </main>
+                <!--############ Footer ############## -->
+                
+                <footer class="page-layout__footer">
+                    <p>جميع الحقوق محفوظة™️ لمكتب نور</p>
+                </footer>
+                </body>
+                
+                </html>
